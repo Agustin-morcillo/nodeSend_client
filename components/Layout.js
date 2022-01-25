@@ -6,7 +6,9 @@ export default function Layout({ children }) {
     return (
         <>
             <Head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>Next.js NodeSend</title>
+                <meta name="description" content="NodeSend es la forma más sencilla de enviar tus archivos a todo el mundo. Comparta archivos y fotos de gran tamaño. ¡Compartir archivos es fácil!" />
                 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
             </Head>
 
