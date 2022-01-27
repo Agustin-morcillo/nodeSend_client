@@ -1,8 +1,10 @@
 import React, { useReducer } from "react"
 import AuthContext from "./authContext"
 import AuthReducer from "./authReducer"
+import axiosClient from "../../config/axios"
 
 import { AUTH_USER } from "../../types"
+
 
 const AuthState = ({ children }) => {
 
@@ -14,6 +16,15 @@ const AuthState = ({ children }) => {
     }
 
     const [state, dispatch] = useReducer(AuthReducer, initialState)
+
+    const registerUser = async data => {
+        try {
+            const response = await axiosClient.post("/api/users/register", data)
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const authUser = name => {
         dispatch({
@@ -29,7 +40,8 @@ const AuthState = ({ children }) => {
                 auth: state.auth,
                 user: state.user,
                 message: state.message,
-                authUser
+                authUser,
+                registerUser
             }}
         >
             {children}

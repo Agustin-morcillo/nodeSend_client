@@ -8,7 +8,7 @@ import AuthContext from "../context/auth/authContext";
 export default function Register() {
 
     const authContext = useContext(AuthContext)
-    const { authUser, token } = authContext
+    const { authUser, token, registerUser } = authContext
 
     const formik = useFormik({
         initialValues: {
@@ -27,7 +27,7 @@ export default function Register() {
                 .min(6, "El password debe contener al menos 6 caracteres")
         }),
         onSubmit: values => {
-            console.log(values)
+            registerUser(values)
         }
     })
 
@@ -44,6 +44,7 @@ export default function Register() {
                                 type="text"
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="name"
+                                name="name"
                                 placeholder="Ingrese su nombre"
                                 value={formik.values.name}
                                 onChange={formik.handleChange}
@@ -62,6 +63,7 @@ export default function Register() {
                                 type="email"
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="email"
+                                name="email"
                                 placeholder="Ingrese su email"
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
@@ -80,6 +82,7 @@ export default function Register() {
                                 type="password"
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="password"
+                                name="password"
                                 placeholder="Ingrese una contraseña"
                                 value={formik.values.password}
                                 onChange={formik.handleChange}
