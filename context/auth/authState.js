@@ -3,7 +3,7 @@ import AuthContext from "./authContext"
 import AuthReducer from "./authReducer"
 import axiosClient from "../../config/axios"
 
-import { AUTH_USER } from "../../types"
+import { SUCCESSFUL_REGISTRATION, REGISTRATION_ERROR, CLEAN_ALERTS } from "../../types"
 
 
 const AuthState = ({ children }) => {
@@ -20,17 +20,21 @@ const AuthState = ({ children }) => {
     const registerUser = async data => {
         try {
             const response = await axiosClient.post("/api/users/register", data)
-            console.log(response)
+            dispatch({
+                type: SUCCESSFUL_REGISTRATION,
+                payload: response.data
+            })
         } catch (error) {
-            console.log(error)
+            dispatch({
+                type: REGISTRATION_ERROR,
+                payload: error.response.data.errors[0].msg
+            })
         }
-    }
-
-    const authUser = name => {
-        dispatch({
-            type: AUTH_USER,
-            payload: name
-        })
+        setTimeout(() => {
+            dispatch({
+                type: CLEAN_ALERTS
+            })
+        }, 3000)
     }
 
     return (
@@ -40,7 +44,6 @@ const AuthState = ({ children }) => {
                 auth: state.auth,
                 user: state.user,
                 message: state.message,
-                authUser,
                 registerUser
             }}
         >

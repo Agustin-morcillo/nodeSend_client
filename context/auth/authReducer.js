@@ -1,11 +1,17 @@
-import { AUTH_USER } from "../../types"
+import { SUCCESSFUL_REGISTRATION, REGISTRATION_ERROR, CLEAN_ALERTS } from "../../types"
 
 const AuthReducer = (state, action) => {
     switch (action.type) {
-        case AUTH_USER:
+        case SUCCESSFUL_REGISTRATION:
+        case REGISTRATION_ERROR:
             return {
                 ...state,
-                user: action.payload
+                message: action.payload
+            }
+        case CLEAN_ALERTS:
+            return {
+                ...state,
+                message: null
             }
         default:
             return state

@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import AuthContext from "../context/auth/authContext";
+import Alerts from "../components/Alerts";
 
 
 
 export default function Register() {
 
     const authContext = useContext(AuthContext)
-    const { authUser, token, registerUser } = authContext
+    const { registerUser, message } = authContext
 
     const formik = useFormik({
         initialValues: {
@@ -34,6 +35,8 @@ export default function Register() {
     return (
         <div className="md:w-4/5 xl:w-3/5 mx-auto mb-32">
             <h2 className="text-4xl font-sans font-bold text-gray-800 text-center my-4">Crear Cuenta</h2>
+
+            {message && <Alerts />}
 
             <div className="flex justify-center mt-5">
                 <div className="w-full max-w-lg">
