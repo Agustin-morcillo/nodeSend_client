@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik"
 import * as Yup from "yup"
+import AuthContext from "../context/auth/authContext";
+
 
 
 export default function Register() {
+
+    const authContext = useContext(AuthContext)
+    const { authUser, token } = authContext
 
     const formik = useFormik({
         initialValues: {

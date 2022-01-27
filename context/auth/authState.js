@@ -2,6 +2,8 @@ import React, { useReducer } from "react"
 import AuthContext from "./authContext"
 import AuthReducer from "./authReducer"
 
+import { AUTH_USER } from "../../types"
+
 const AuthState = ({ children }) => {
 
     const initialState = {
@@ -13,13 +15,21 @@ const AuthState = ({ children }) => {
 
     const [state, dispatch] = useReducer(AuthReducer, initialState)
 
+    const authUser = name => {
+        dispatch({
+            type: AUTH_USER,
+            payload: name
+        })
+    }
+
     return (
         <AuthContext.Provider
             value={{
                 token: state.token,
                 auth: state.auth,
                 user: state.user,
-                message: state.message
+                message: state.message,
+                authUser
             }}
         >
             {children}
