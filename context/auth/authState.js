@@ -12,7 +12,10 @@ const AuthState = ({ children }) => {
         token: "",
         auth: null,
         user: null,
-        message: null
+        message: {
+            msg: null,
+            status: null
+        }
     }
 
     const [state, dispatch] = useReducer(AuthReducer, initialState)
@@ -22,7 +25,7 @@ const AuthState = ({ children }) => {
             const response = await axiosClient.post("/api/users/register", data)
             dispatch({
                 type: SUCCESSFUL_REGISTRATION,
-                payload: response.data
+                payload: response.data.msg
             })
         } catch (error) {
             dispatch({
@@ -34,7 +37,7 @@ const AuthState = ({ children }) => {
             dispatch({
                 type: CLEAN_ALERTS
             })
-        }, 3000)
+        }, 5000)
     }
 
     return (

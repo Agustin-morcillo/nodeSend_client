@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormik } from "formik"
 import * as Yup from "yup"
+import FormErrorMsg from "../components/FormErrorMsg"
 
 
 export default function Login() {
@@ -39,11 +40,7 @@ export default function Login() {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
-                            {formik.touched.email && formik.errors.email ? (
-                                <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 p-4">
-                                    <p>{formik.errors.email}</p>
-                                </div>
-                            ) : null}
+                            {formik.touched.email && formik.errors.email && <FormErrorMsg message={formik.errors.email} />}
                         </div>
 
                         <div className="mb-4">
@@ -57,11 +54,7 @@ export default function Login() {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
-                            {formik.touched.password && formik.errors.password ? (
-                                <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 p-4">
-                                    <p>{formik.errors.password}</p>
-                                </div>
-                            ) : null}
+                            {formik.touched.password && formik.errors.password && <FormErrorMsg message={formik.errors.password} />}
                         </div>
 
                         <input type="submit"
