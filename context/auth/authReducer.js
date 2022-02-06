@@ -1,4 +1,11 @@
-import { SUCCESSFUL_REGISTRATION, REGISTRATION_ERROR, CLEAN_ALERTS, SUCCESSFUL_LOGIN, LOGIN_ERROR, AUTH_USER } from "../../types"
+import {
+    SUCCESSFUL_REGISTRATION,
+    REGISTRATION_ERROR,
+    SUCCESSFUL_LOGIN,
+    LOGIN_ERROR,
+    AUTH_USER,
+    CLEAN_ALERTS
+} from "../../types"
 
 const AuthReducer = (state, action) => {
     switch (action.type) {
@@ -26,6 +33,11 @@ const AuthReducer = (state, action) => {
                 token: action.payload,
                 auth: true
             }
+        case AUTH_USER:
+            return {
+                ...state,
+                user: action.payload
+            }
         case CLEAN_ALERTS:
             return {
                 ...state,
@@ -33,11 +45,6 @@ const AuthReducer = (state, action) => {
                     msg: null,
                     status: null
                 }
-            }
-        case AUTH_USER:
-            return {
-                ...state,
-                user: action.payload
             }
         default:
             return state

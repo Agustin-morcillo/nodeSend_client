@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from "react"
 import { useFormik } from "formik"
 import * as Yup from "yup"
+
 import AuthContext from "../context/auth/authContext"
-import Alerts from "../components/Alerts"
+
 import FormErrorMsg from "../components/FormErrorMsg"
+import Alerts from "../components/Alerts"
 
 export default function Register() {
 

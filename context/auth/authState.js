@@ -1,10 +1,19 @@
 import React, { useReducer } from "react"
+
 import AuthContext from "./authContext"
 import AuthReducer from "./authReducer"
+
 import axiosClient from "../../config/axios"
 import authToken from "../../config/authToken"
 
-import { SUCCESSFUL_REGISTRATION, REGISTRATION_ERROR, CLEAN_ALERTS, SUCCESSFUL_LOGIN, LOGIN_ERROR, AUTH_USER } from "../../types"
+import {
+    SUCCESSFUL_REGISTRATION,
+    REGISTRATION_ERROR,
+    SUCCESSFUL_LOGIN,
+    LOGIN_ERROR,
+    AUTH_USER,
+    CLEAN_ALERTS
+} from "../../types"
 
 
 const AuthState = ({ children }) => {

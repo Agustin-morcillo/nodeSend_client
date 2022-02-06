@@ -1,4 +1,5 @@
 import React, { useContext } from "react"
+
 import AuthContext from "../context/auth/authContext"
 
 export default function Alerts({ color }) {

@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react"
+import { useRouter } from "next/router"
 import { useFormik } from "formik"
 import * as Yup from "yup"
+
+import AuthContext from "../context/auth/authContext"
+
 import FormErrorMsg from "../components/FormErrorMsg"
 import Alerts from "../components/Alerts"
-import AuthContext from "../context/auth/authContext"
-import { useRouter } from "next/router"
-
 
 export default function Login() {
 
