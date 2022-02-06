@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import FormErrorMsg from "../components/FormErrorMsg"
+import Alerts from "../components/Alerts"
+import AuthContext from "../context/auth/authContext"
+import { useRouter } from "next/router"
 
 
 export default function Login() {
+
+    const authcontext = useContext(AuthContext)
+    const { loginUser, message, auth } = authcontext
+
+    const router = useRouter()
+
+    useEffect(() => {
+        if (auth) {
+            router.push("/")
+        }
+    }, [auth, router])
 
     const formik = useFormik({
         initialValues: {
@@ -19,12 +33,13 @@ export default function Login() {
                 .required("Debes completar este campo")
         }),
         onSubmit: values => {
-            console.log(values)
+            loginUser(values)
         }
     })
     return (
         <div className="md:w-4/5 xl:w-3/5 mx-auto mb-32">
             <h2 className="text-4xl font-sans font-bold text-gray-800 text-center my-4">Iniciar Sesión</h2>
+            {message && message.status == "400" && <Alerts color="red" />}
 
             <div className="flex justify-center mt-5">
                 <div className="w-full max-w-lg">

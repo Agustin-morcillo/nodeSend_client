@@ -5,9 +5,6 @@ import AuthContext from "../context/auth/authContext"
 import Alerts from "../components/Alerts"
 import FormErrorMsg from "../components/FormErrorMsg"
 
-
-
-
 export default function Register() {
 
     const authContext = useContext(AuthContext)
